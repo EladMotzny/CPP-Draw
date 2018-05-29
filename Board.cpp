@@ -21,7 +21,7 @@ Board::Board()
 
 Board::Board(int n)
 {
-    cout << "called c'tor" << endl;
+    //cout << "called c'tor" << endl;
     row = n;
     col = n;
     board = new Square *[col];
@@ -40,7 +40,7 @@ Board::Board(int n)
 
 Board::Board(const Board &other)
 {
-    cout << "copy c'tor" << endl;
+    //cout << "copy c'tor" << endl;
     row = other.row;
     col = other.col;
     board = new Square *[col];
@@ -71,13 +71,13 @@ ostream &operator<<(ostream &out, Board &b)
 {
     for (int i = 0; i < b.getRow(); i++)
     {
-        out << "|";
+        //out << "|";
         for (int j = 0; j < b.getCol(); j++)
         {
             out << " " << b.board[i][j].getContent() << " |";
         }
-        out << endl
-            << "________________" << endl;
+        out << endl;
+            //<< "________________" << endl;
     }
     return out;
 }
@@ -124,10 +124,11 @@ void Board::operator=(const Board &b)
     }
 }
 
+//this is how we insert the file name, exception comes here
 istream &operator>>(istream &is, Board &sqr)
 {
     string file;
-    is.seekg(0, is.end);
+    is.seekg(0, is.end);//'is' is the file name, exception goes here
     int length = is.tellg();
     is.seekg(0, is.beg);
     int charCount = 0;
@@ -205,6 +206,6 @@ string Board::draw(int n)
   cout << t << endl;
   bmp_generator(t, n, n, (BYTE *)a);
 
-return (EXIT_SUCCESS);
+return (EXIT_SUCCESS);//need to return the name of the file which is in t so we need to return that (cast t to string and return it)
 }
 
