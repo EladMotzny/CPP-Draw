@@ -204,7 +204,6 @@ string Board::draw(int n)
   char* t;
   strftime (t,80,"%F_%T",timeinfo);
   strcat(t,"_img.bmp");
-  cout << t << endl;
   bmp_generator(t, n, n, (BYTE *)a);
   /*LINES THAT ELAD ADDED: (IN CASE EVERYTHING GOES TO SHIT)*/
   string s(t);
