@@ -129,6 +129,7 @@ istream &operator>>(istream &is, Board &sqr)
 {
     string file;
     is.seekg(0, is.end);//'is' is the file name, exception goes here
+    
     int length = is.tellg();
     is.seekg(0, is.beg);
     int charCount = 0;
@@ -205,7 +206,8 @@ string Board::draw(int n)
   strcat(t,"_img.bmp");
   cout << t << endl;
   bmp_generator(t, n, n, (BYTE *)a);
-
-return (EXIT_SUCCESS);//need to return the name of the file which is in t so we need to return that (cast t to string and return it)
+  /*LINES THAT ELAD ADDED: (IN CASE EVERYTHING GOES TO SHIT)*/
+  string s(t);
+  return (s);//need to return the name of the file which is in t so we need to return that (cast t to string and return it)
 }
 
