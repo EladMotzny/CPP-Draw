@@ -15,4 +15,5 @@ int main() {
 	Board board{(int)sqrt(length)};
 	cin >> board;
 	string filename = board.draw(600);
+	cout << filename << endl;
 }
