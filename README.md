@@ -1,3 +1,3 @@
 # CPP-Board
-An implementation of the simple game tic-tac-toe with a resizable gmae board. 
+Making a txt file into a picture. As you can see we have tested every board in the automated tester and it works perfectly fine. 
 
