@@ -133,7 +133,6 @@ void Board::operator=(const Board &b)
     }
 }
 
-//this is how we insert the file name, exception comes here
 istream &operator>>(istream &is, Board &sqr)
 {
     ///////////////////////////////////////
@@ -147,7 +146,7 @@ istream &operator>>(istream &is, Board &sqr)
     ////////////////////////////////////////////////////
     cout << "in cin" << endl;
     string file;
-    is.seekg(0, is.end);//'is' is the file name, exception goes here
+    is.seekg(0, is.end);
     
     int length = is.tellg();
     sqr.row = (int)sqrt(length);
@@ -245,8 +244,7 @@ string Board::draw(int n)
   strftime (t,80,"%F_%T",timeinfo);
   strcat(t,"_img.bmp");
   bmp_generator(t, n, n, (BYTE *)a);
-  /*LINES THAT ELAD ADDED: (IN CASE EVERYTHING GOES TO SHIT)*/
   string s(t);
-  return (s);//need to return the name of the file which is in t so we need to return that (cast t to string and return it)
+  return (s);
 }
 
