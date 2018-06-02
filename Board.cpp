@@ -16,7 +16,7 @@ using namespace std;
 
 Board::Board()
 {
-    Board{4};
+    // Board{4};
 }
 
 Board::Board(int n)
@@ -24,9 +24,12 @@ Board::Board(int n)
     //cout << "called c'tor" << endl;
     row = n;
     col = n;
+    cout << "in c'tor(int n)': " << " col is:" << col << endl;
+    cout << "in c'tor(int n)': " << " row is:" << row << endl;
     board = new Square *[col];
     for (int i = 0; i < col; i++)
     {
+        cout << "INIT: " <<i << endl;
         board[i] = new Square[row]; //new Square('.');
     }
     for (int i = 0; i < row; i++)
@@ -40,7 +43,8 @@ Board::Board(int n)
 
 Board::Board(const Board &other)
 {
-    //cout << "copy c'tor" << endl;
+    
+    cout << "copy c'tor" << endl;
     row = other.row;
     col = other.col;
     board = new Square *[col];
@@ -59,6 +63,7 @@ Board::Board(const Board &other)
 
 Board::~Board() //Destructor
 {
+    cout << "D'tor" << endl;
     for (int i = 0; i < this->row; i++)
     {
         delete[] board[i];
@@ -69,12 +74,16 @@ Board::~Board() //Destructor
 
 ostream &operator<<(ostream &out, Board &b)
 {
+    cout << "in cout" << endl;
     for (int i = 0; i < b.getRow(); i++)
     {
+        cout << "PRINT: " << i;
         //out << "|";
         for (int j = 0; j < b.getCol(); j++)
         {
+            cout << j << endl;
             out << " " << b.board[i][j].getContent() << " |";
+            cout << b.board[i][j].getContent();
         }
         out << endl;
             //<< "________________" << endl;
@@ -127,10 +136,41 @@ void Board::operator=(const Board &b)
 //this is how we insert the file name, exception comes here
 istream &operator>>(istream &is, Board &sqr)
 {
+    ///////////////////////////////////////
+    cin.seekg (0, cin.end);
+    // int length = cin.tellg();
+    // cout << length << endl;
+    // cin.seekg (0, cin.beg);
+    // Board{(int)sqrt(length)}; //600
+    // cout<< "at this point the board is gone" << endl;
+    // cout << (int)sqrt(length) << endl;
+    ////////////////////////////////////////////////////
+    cout << "in cin" << endl;
     string file;
     is.seekg(0, is.end);//'is' is the file name, exception goes here
     
     int length = is.tellg();
+    sqr.row = (int)sqrt(length);
+    sqr.col = (int)sqrt(length);
+    //////try////
+    sqr.board = new Square *[sqr.col];
+    for (int i = 0; i < sqr.col; i++)
+    {
+        cout << "INIT: " <<i << endl;
+        sqr.board[i] = new Square[sqr.row]; //new Square('.');
+    }
+    for (int i = 0; i < sqr.row; i++)
+    {
+        for (int j = 1; j < sqr.col; j++)
+        {
+            sqr.board[i][j].setContent('.');
+        }
+    }
+    ///////
+    cout << "in cin: " << " length is:" << length << endl;
+    cout << "in cin: " << " sqr.row is:" << sqr.getRow() << endl;
+    cout << "in cin: " << " sqr.col is:" << sqr.getCol() << endl;
+    // cout << "in cin: " << " sqr.row is:" << length << endl;
     is.seekg(0, is.beg);
     int charCount = 0;
     int i = 0;
