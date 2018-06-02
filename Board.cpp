@@ -24,12 +24,12 @@ Board::Board(int n)
     //cout << "called c'tor" << endl;
     row = n;
     col = n;
-    cout << "in c'tor(int n)': " << " col is:" << col << endl;
-    cout << "in c'tor(int n)': " << " row is:" << row << endl;
+    // cout << "in c'tor(int n)': " << " col is:" << col << endl;
+    // cout << "in c'tor(int n)': " << " row is:" << row << endl;
     board = new Square *[col];
     for (int i = 0; i < col; i++)
     {
-        cout << "INIT: " <<i << endl;
+        // cout << "INIT: " <<i << endl;
         board[i] = new Square[row]; //new Square('.');
     }
     for (int i = 0; i < row; i++)
@@ -44,7 +44,7 @@ Board::Board(int n)
 Board::Board(const Board &other)
 {
     
-    cout << "copy c'tor" << endl;
+    // cout << "copy c'tor" << endl;
     row = other.row;
     col = other.col;
     board = new Square *[col];
@@ -63,7 +63,7 @@ Board::Board(const Board &other)
 
 Board::~Board() //Destructor
 {
-    cout << "D'tor" << endl;
+    // cout << "D'tor" << endl;
     for (int i = 0; i < this->row; i++)
     {
         delete[] board[i];
@@ -74,16 +74,16 @@ Board::~Board() //Destructor
 
 ostream &operator<<(ostream &out, Board &b)
 {
-    cout << "in cout" << endl;
+    // cout << "in cout" << endl;
     for (int i = 0; i < b.getRow(); i++)
     {
-        cout << "PRINT: " << i;
+        // cout << "PRINT: " << i;
         //out << "|";
         for (int j = 0; j < b.getCol(); j++)
         {
-            cout << j << endl;
+            // cout << j << endl;
             out << " " << b.board[i][j].getContent() << " |";
-            cout << b.board[i][j].getContent();
+            // cout << b.board[i][j].getContent();
         }
         out << endl;
             //<< "________________" << endl;
@@ -144,7 +144,7 @@ istream &operator>>(istream &is, Board &sqr)
     // cout<< "at this point the board is gone" << endl;
     // cout << (int)sqrt(length) << endl;
     ////////////////////////////////////////////////////
-    cout << "in cin" << endl;
+    // cout << "in cin" << endl;
     string file;
     is.seekg(0, is.end);
     
@@ -155,7 +155,7 @@ istream &operator>>(istream &is, Board &sqr)
     sqr.board = new Square *[sqr.col];
     for (int i = 0; i < sqr.col; i++)
     {
-        cout << "INIT: " <<i << endl;
+        // cout << "INIT: " <<i << endl;
         sqr.board[i] = new Square[sqr.row]; //new Square('.');
     }
     for (int i = 0; i < sqr.row; i++)
@@ -166,9 +166,9 @@ istream &operator>>(istream &is, Board &sqr)
         }
     }
     ///////
-    cout << "in cin: " << " length is:" << length << endl;
-    cout << "in cin: " << " sqr.row is:" << sqr.getRow() << endl;
-    cout << "in cin: " << " sqr.col is:" << sqr.getCol() << endl;
+    // cout << "in cin: " << " length is:" << length << endl;
+    // cout << "in cin: " << " sqr.row is:" << sqr.getRow() << endl;
+    // cout << "in cin: " << " sqr.col is:" << sqr.getCol() << endl;
     // cout << "in cin: " << " sqr.row is:" << length << endl;
     is.seekg(0, is.beg);
     int charCount = 0;
@@ -196,7 +196,7 @@ istream &operator>>(istream &is, Board &sqr)
 }
 
 string Board::draw(int n)
-{
+{ 
     int i, j;
 
     vector<vector<RGB_data>> buffer(n, vector<RGB_data>(n, {0xff, 0xff, 0xff}));
@@ -232,19 +232,19 @@ string Board::draw(int n)
         }
     }
 
-    // std::chrono::high_resolution_clock::time_point t = std::chrono::high_resolution_clock::now();
-    // string time = t.time_since_epoch();
-    
+//     // std::chrono::high_resolution_clock::time_point t = std::chrono::high_resolution_clock::now();
+//     // string time = t.time_since_epoch();
   time_t rawtime;
   struct tm * timeinfo;
 
   time (&rawtime);
   timeinfo = localtime (&rawtime);
-  char* t;
-  strftime (t,80,"%F_%T",timeinfo);
+  char t[80];
+  strftime (t,80,"%F_%T",timeinfo); //HERE!!!!!!!!!!!!!!!!
   strcat(t,"_img.bmp");
   bmp_generator(t, n, n, (BYTE *)a);
   string s(t);
   return (s);
+// return "End of DRAW";
 }
 
