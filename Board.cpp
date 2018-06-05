@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <chrono>
 #include "BMPgenerator.h"
 
 using namespace std;
@@ -241,6 +242,22 @@ string Board::draw(int n)
   timeinfo = localtime (&rawtime);
   char t[80];
   strftime (t,80,"%F_%T",timeinfo); //HERE!!!!!!!!!!!!!!!!
+  ///////////////////
+   const std::clock_t start = std::clock() ;
+
+    const std::clock_t end = std::clock() ;
+
+    const double elapsed_processor_time_millisecs = (end-start) * 1000.0 / CLOCKS_PER_SEC ;
+
+    cout << elapsed_processor_time_millisecs << endl;
+ 
+    ostringstream ms;
+    ms << elapsed_processor_time_millisecs;
+    string str = ms.str();
+    double dbl = 2222;
+    const char *cstr = str.c_str();
+  ////////////////////////
+  strcat(t,cstr);
   strcat(t,"_img.bmp");
   bmp_generator(t, n, n, (BYTE *)a);
   string s(t);
