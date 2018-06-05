@@ -249,7 +249,7 @@ string Board::draw(int n)
 
     const double elapsed_processor_time_millisecs = (start) * 1000.0 / CLOCKS_PER_SEC ;//end-
 
-    cout << elapsed_processor_time_millisecs << endl;
+    //cout << elapsed_processor_time_millisecs << endl;
  
     ostringstream ms;
     ms << elapsed_processor_time_millisecs;
