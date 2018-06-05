@@ -245,18 +245,17 @@ string Board::draw(int n)
   ///////////////////
    const std::clock_t start = std::clock() ;
 
-    const std::clock_t end = std::clock() ;
+    // const std::clock_t end = std::clock() ;
 
-    const double elapsed_processor_time_millisecs = (end-start) * 1000.0 / CLOCKS_PER_SEC ;
+    const double elapsed_processor_time_millisecs = (start) * 1000.0 / CLOCKS_PER_SEC ;//end-
 
     cout << elapsed_processor_time_millisecs << endl;
  
     ostringstream ms;
     ms << elapsed_processor_time_millisecs;
     string str = ms.str();
-    double dbl = 2222;
+    // double dbl = elapsed_processor_time_millisecs;
     const char *cstr = str.c_str();
-  ////////////////////////
   strcat(t,cstr);
   strcat(t,"_img.bmp");
   bmp_generator(t, n, n, (BYTE *)a);
